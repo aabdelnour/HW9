@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.9'
 
 services:
   fastapi:
@@ -7,9 +7,13 @@ services:
       - ./qr_codes:/myapp/qr_codes # Maps ./qr_codes from your host to /myapp/qr_codes in the container
       - ./:/myapp/
     environment:
+      - ADMIN_USER=admin
+      - ADMIN_PASSWORD=secret
       - QR_CODE_DIR=./qr_codes
       - FILL_COLOR=red
       - BACK_COLOR=white
+    ports:
+      - "8000:8000"
   nginx:
     image: nginx:latest
     ports:
