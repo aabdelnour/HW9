@@ -33,5 +33,10 @@ app = FastAPI(
 
 # Here, we include the routers for our application. Routers define the paths and operations your API provides.
 # We have two routers in this case: one for managing QR codes and another for handling OAuth authentication.
-app.include_router(qr_code.ruter)  # QR code management routes
+app.include_router(qr_code.router)  # QR code management routes
 app.include_router(oauth.router)  # OAuth authentication routes
+
+# Adding a root endpoint to handle requests to the root URL.
+@app.get("/")
+def read_root():
+    return {"message": "Welcome to the QR Code Manager API!"}
